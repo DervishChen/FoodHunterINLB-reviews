@@ -1,0 +1,6 @@
+[
+  {"id":"demo-morning","name":"晨光早餐所","categories":["早餐"],"tags":["早餐","銅板美食"],"address":"台北市大安區","mapQuery":"台北市大安區 早餐","placeId":"","description":"酥脆蛋餅配一杯熱豆漿，從簡單的味道開始一天。","art":"morning","demo":true},
+  {"id":"demo-noodle","name":"巷口麵食堂","categories":["午餐","晚餐"],"tags":["麵食","一人友善"],"address":"台北市中山區","mapQuery":"台北市中山區 麵食","placeId":"","description":"一碗熱湯、一份小菜，收藏日常裡值得回訪的滋味。","art":"noodle","demo":true},
+  {"id":"demo-table","name":"小日子餐桌","categories":["晚餐"],"tags":["聚餐","家常料理"],"address":"新北市板橋區","mapQuery":"新北市板橋區 餐廳","placeId":"","description":"下班後慢慢吃飯，和喜歡的人分享一桌好菜。","art":"table","demo":true},
+  {"id":"demo-cafe","name":"午後甜點室","categories":["甜點/飲料"],"tags":["咖啡","甜點","午後時光"],"address":"台北市松山區","mapQuery":"台北市松山區 咖啡","placeId":"","description":"留一點時間給甜點，讓咖啡香陪你度過午後。","art":"cafe","demo":true}
+]
