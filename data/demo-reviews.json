@@ -1,6 +1,6 @@
 [
- {"id":"demo-1","restaurantId":"demo-morning","authorId":"sample-1","author":"食光編輯（示範）","score":4.6,"visitedOn":"2026-10-01","updatedAt":"2026-10-01T12:00:00+08:00","text":"示範文字：蛋餅外皮酥香，早餐時段很適合外帶。"},
- {"id":"demo-2","restaurantId":"demo-noodle","authorId":"sample-1","author":"食光編輯（示範）","score":4.8,"visitedOn":"2026-10-01","updatedAt":"2026-10-01T12:00:00+08:00","text":"示範文字：湯頭清爽，麵條有嚼勁，一個人也能吃得很滿足。"},
- {"id":"demo-3","restaurantId":"demo-table","authorId":"sample-1","author":"食光編輯（示範）","score":4.5,"visitedOn":"2026-10-01","updatedAt":"2026-10-01T12:00:00+08:00","text":"示範文字：適合朋友聚餐，喜歡這裡放鬆的步調。"},
- {"id":"demo-4","restaurantId":"demo-cafe","authorId":"sample-1","author":"食光編輯（示範）","score":4.7,"visitedOn":"2026-10-01","updatedAt":"2026-10-01T12:00:00+08:00","text":"示範文字：咖啡與甜點很合拍，想再來度過一個下午。"}
+ {"id":"demo-1","restaurantId":"demo-morning","authorId":"sample-1","author":"美食獵人編輯（示範）","score":4.6,"visitedOn":"2026-10-01","updatedAt":"2026-10-01T12:00:00+08:00","text":"示範文字：蛋餅外皮酥香，早餐時段很適合外帶。"},
+ {"id":"demo-2","restaurantId":"demo-noodle","authorId":"sample-1","author":"美食獵人編輯（示範）","score":4.8,"visitedOn":"2026-10-01","updatedAt":"2026-10-01T12:00:00+08:00","text":"示範文字：湯頭清爽，麵條有嚼勁，一個人也能吃得很滿足。"},
+ {"id":"demo-3","restaurantId":"demo-table","authorId":"sample-1","author":"美食獵人編輯（示範）","score":4.5,"visitedOn":"2026-10-01","updatedAt":"2026-10-01T12:00:00+08:00","text":"示範文字：適合朋友聚餐，喜歡這裡放鬆的步調。"},
+ {"id":"demo-4","restaurantId":"demo-cafe","authorId":"sample-1","author":"美食獵人編輯（示範）","score":4.7,"visitedOn":"2026-10-01","updatedAt":"2026-10-01T12:00:00+08:00","text":"示範文字：咖啡與甜點很合拍，想再來度過一個下午。"}
 ]
