@@ -4,7 +4,7 @@
 
 這是一個繁體中文、響應式、無資料庫的開源餐廳評價靜態網站。目前尚未指定哪一間土地銀行或周邊範圍，起始資料仍是虛構示範；正式店家由大家透過 Git 共編加入。
 
-網站：https://DervishChen.github.io/shiguang-food-reviews/
+網站：https://dervishchen.github.io/FoodHunterINLB-reviews/
 
 ## 現階段功能
 
