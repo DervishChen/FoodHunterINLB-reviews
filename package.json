@@ -1,0 +1,1 @@
+{"name":"shiguang-food-reviews","version":"1.0.0","private":true,"type":"module","license":"MIT","scripts":{"test":"node --test scripts/core.test.mjs","validate":"node scripts/validate.mjs","build":"node scripts/build.mjs"}}
