@@ -54,6 +54,8 @@ Google 登入按鈕目前僅提供狀態說明；`googleClientId`、`reviewServi
 
 ## 開源與維護
 
+採用「公開瀏覽、指定朋友共同維護」：網站與原始碼公開，儲存庫的直接寫入權限只授予擁有者邀請的協作者。朋友接受 GitHub 邀請後，以 branch 與 Pull Request 協作；一般訪客可回饋或提出 Fork PR，但不能直接改動本儲存庫。完整流程見 [CONTRIBUTING.md](CONTRIBUTING.md)。
+
 原始碼與原創 CSS 插畫採 MIT。沒有 npm 依賴，沒有外部圖片、字型套件或 GPL 元件。CI Actions 採 MIT 授權；詳見 [THIRD_PARTY.md](THIRD_PARTY.md)。外部 Google API 為專有服務，依 Google 條款使用；若「所有服務也必須 MIT/BSD」，則需取消 Google Maps 需求。
 
 GitHub Actions 的七天檢查是協作規則，不是不可繞過的存取控制。建議維護者在 Repository Rulesets 設定 main 必須經 PR、通過 Validate contributions 並取得審核；本專案不宣稱已設定分支保護。不保證任何軟體永無風險，定期檢查版本及 GitHub 安全公告。
