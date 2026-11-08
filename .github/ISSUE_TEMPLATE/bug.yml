@@ -1,0 +1,21 @@
+name: 問題回報
+description: 回報網站錯誤或提出功能建議
+title: '[回報] '
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 發生什麼問題？
+      description: 請勿填寫 IP、電子郵件、登入憑證或其他個人資料。
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 重現步驟與預期結果
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: 瀏覽器與裝置

@@ -1,0 +1,18 @@
+name: 使用回饋問卷
+description: 分享使用感受與下一步功能期待（公開回覆）
+title: '[回饋] '
+body:
+  - type: dropdown
+    id: satisfaction
+    attributes:
+      label: 整體使用滿意度
+      options: ['5 非常滿意', '4 滿意', '3 普通', '2 不滿意', '1 非常不滿意']
+    validations:
+      required: true
+  - type: textarea
+    id: wishes
+    attributes:
+      label: 最希望改善或增加的功能
+      description: 回覆將公開於 GitHub，請勿填寫私人資料。
+    validations:
+      required: true
