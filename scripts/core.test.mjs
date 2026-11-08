@@ -1,0 +1,9 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {validScore,validDate,rank,mergeReviews,remaining,WEEK,validateReview} from '../core.js';
+const restaurants=[{id:'a',name:'A',categories:['早餐'],tags:['咖啡'],address:'台北'},{id:'b',name:'B',categories:['晚餐'],tags:[],address:'台南'}];
+test('score boundaries and decimal precision',()=>{for(const n of [1,1.1,4.9,5])assert.ok(validScore(n));for(const n of [0.9,5.1,4.99,NaN,Infinity,'4.5'])assert.equal(validScore(n),false);});
+test('real calendar dates',()=>{assert.ok(validDate('2024-02-29'));for(const d of ['2025-02-29','2026-13-01','2026-11-31','11/08/2026'])assert.equal(validDate(d),false);});
+test('cooldown exact seven-day boundary',()=>{const at='2026-01-01T00:00:00Z';assert.equal(remaining(at,Date.parse(at)+WEEK-1),1);assert.equal(remaining(at,Date.parse(at)+WEEK),0);});
+test('ranking averages, category, tag, search, unrated',()=>{const rs=[{restaurantId:'a',score:4},{restaurantId:'a',score:5}];assert.equal(rank(restaurants,rs)[0].score,4.5);assert.equal(rank(restaurants,rs)[1].score,null);assert.equal(rank(restaurants,rs,'早餐','咖啡','台北').length,1);assert.equal(rank(restaurants,rs,'晚餐','咖啡').length,0);});
+test('latest local revision replaces author vote instead of adding it',()=>{const a={restaurantId:'a',authorId:'x',updatedAt:'2026-01-01',score:4};const b={...a,updatedAt:'2026-01-09',score:5};assert.deepEqual(mergeReviews([a],[b]),[b]);assert.deepEqual(mergeReviews([b],[a]),[b]);});
+test('review rejects future visit and unknown restaurant',()=>{const r={id:'1',restaurantId:'a',authorId:'x',author:'食客',text:'好吃',score:4.5,visitedOn:'2026-01-01',updatedAt:'2026-01-02T00:00:00Z'};assert.equal(validateReview(r,restaurants,'2026-01-02'),r);assert.throws(()=>validateReview({...r,visitedOn:'2026-01-03'},restaurants,'2026-01-02'));assert.throws(()=>validateReview({...r,restaurantId:'c'},restaurants));});
