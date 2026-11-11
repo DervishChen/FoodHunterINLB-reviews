@@ -3,3 +3,12 @@
 @media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}.hero-art{height:370px}.hero{gap:25px}header,footer{padding-left:28px;padding-right:28px}main{padding:0 28px}nav{gap:20px}.plate{width:240px;height:240px}.cup{right:15px;bottom:55px}.ranking{gap:25px}}@media(max-width:650px){header{height:83px;padding:0 20px}header nav{display:none}header .primary{padding:12px;font-size:12px}.brand strong{font-size:22px}main{padding:0 20px}.hero{grid-template-columns:1fr;padding-top:35px;gap:30px}h1{font-size:44px}.hero-art{height:310px;max-width:470px;width:100%;justify-self:center}.hero-foot{margin-top:20px}.plate{width:222px;height:222px}.art-caption{top:19px}.art-note{font-size:15px;bottom:15px}.cup{width:58px;height:58px;right:25px;bottom:55px}.notice{display:block}.notice p{margin-top:8px}.section-head{display:block}.search{margin:22px 0}.search input{max-width:none;width:100%}.filter-row{align-items:start;flex-direction:column}.pills{gap:5px}.pills button{padding:9px 13px}.sort{align-self:flex-end}.subfilters{gap:10px;flex-wrap:wrap}.subfilters>span{width:100%;margin:0}.cards{gap:12px}.card-art{height:135px}.card-body{padding:13px}.card h3{font-size:16px}.card-desc{font-size:11px;min-height:60px}.card-bottom{align-items:start;gap:8px;flex-direction:column}.ranking{grid-template-columns:1fr;gap:10px}.ranking h2 br{display:none}.community{align-items:start;flex-direction:column}.community-actions{width:100%}footer{flex-wrap:wrap;padding:24px 20px;gap:20px}footer .brand{width:40%;margin:0}footer small{width:100%}dialog{padding:28px 20px}.export-bar{flex-direction:column;gap:16px}.form-row{grid-template-columns:1fr 1fr}h2{font-size:28px}}@media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}*{transition:none!important}}
 
 .share-link{display:grid;gap:8px;font-size:12px;color:var(--muted);margin-top:18px}.share-link input{width:100%;font-size:12px}
+
+.review-photos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  gap: 14px;
+}
+.review-photos figure { margin: 0; }
+.review-photos img { display: block; width: 100%; max-height: 380px; object-fit: contain; border-radius: 6px; background: #f7f5ef; }
+.review-photos figcaption { margin-top: 6px; color: var(--muted); font-size: 12px; }

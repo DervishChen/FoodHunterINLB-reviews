@@ -23,11 +23,33 @@ function render(){
  $('#leaderboard').innerHTML=ranked.filter(r=>r.score!==null).slice(0,5).map((r,i)=>`<li><span class="rank-number">${String(i+1).padStart(2,'0')}</span><div class="rank-name"><button data-detail="${esc(r.id)}">${esc(r.name)}</button><small>${esc(r.categories.join(' · '))} ${r.demo?'／示範':''} ${local.some(x=>x.restaurantId===r.id)?'／含本機草稿':''}</small></div><span class="rank-score">${r.score.toFixed(1)} <small>★</small></span></li>`).join('')||'<li>尚無評分，留下第一篇食記吧。</li>';
  document.querySelectorAll('[data-detail]').forEach(b=>b.onclick=()=>detail(b.dataset.detail));
 }
+function renderReview(review) {
+ const photos = (Array.isArray(review.photos) ? review.photos : []).filter(photo =>
+  photo && /^[a-z0-9-]+\.jpg$/.test(photo.file) && typeof photo.alt === 'string'
+ );
+ const gallery = photos.length ? `<div class="review-photos">${photos.map(photo => `
+  <figure>
+   <a href="./data/${photo.file}" target="_blank" rel="noopener">
+    <img src="./data/${photo.file}" alt="${esc(photo.alt)}" loading="lazy" decoding="async">
+   </a>
+   <figcaption>${esc(photo.alt)}</figcaption>
+  </figure>`).join('')}</div>` : '';
+ const source = local.some(item => item.id === review.id) ? '本機未公開' : 'Git 共編';
+ return `<article class="review">
+  <div class="review-head"><strong>${esc(review.author)}</strong><span>★ ${review.score.toFixed(1)}</span></div>
+  <p class="hint">用餐 ${esc(review.visitedOn)} · ${source} · 更新 ${esc(new Date(review.updatedAt).toLocaleDateString('zh-TW'))}</p>
+  <p>${esc(review.text)}</p>${gallery}
+ </article>`;
+}
+
 function detail(id){
  const r=restaurants.find(x=>x.id===id);if(!r){notify('找不到這間餐廳，請從餐廳列表重新選擇。');return;}
+ const mapUrl = typeof r.mapUrl === 'string' && /^https:\/\/maps\.app\.goo\.gl\/[A-Za-z0-9]+$/.test(r.mapUrl)
+  ? r.mapUrl
+  : `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.mapQuery || r.name + ' ' + r.address)}${r.placeId ? '&query_place_id=' + encodeURIComponent(r.placeId) : ''}`;
  const shareUrl=new URL(location.href);shareUrl.hash=`restaurant=${encodeURIComponent(id)}`;
  const reviews=currentReviews().filter(x=>x.restaurantId===id).sort((a,b)=>Date.parse(b.updatedAt)-Date.parse(a.updatedAt));
- $('#detail-content').innerHTML=`<p class="eyebrow">${r.demo?'FICTIONAL DEMO':'COMMUNITY REVIEW'}</p><h2>${esc(r.name)}</h2><p class="muted">${esc(r.address)} · ${esc(r.categories.join(' / '))}</p><p class="info-copy">${esc(r.description)}</p><div class="detail-top"><button class="primary" id="review-this">寫下 / 修改我的評價</button><button id="share-this">分享餐廳 ↗</button></div><label class="share-link">餐廳專屬連結<input id="permalink" type="url" readonly value="${esc(shareUrl.href)}" aria-label="餐廳專屬連結，點選後可手動複製"></label><div class="map-box"><p class="hint">${r.demo?'此為虛構餐廳；地圖顯示區域搜尋，不代表店家位置。':'地圖由 Google Maps 提供，載入後將連線至 Google。'}</p><button id="load-map">載入 Google 地圖 ↗</button><div id="map-slot"></div><p id="google-rating" class="hint">${r.demo?'示範餐廳不提供 Google 店家評分。':'Google 評分：尚未載入。需設定 Maps API 金鑰及店家 Place ID。'}</p><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.mapQuery||r.name+' '+r.address)}${r.placeId?'&query_place_id='+encodeURIComponent(r.placeId):''}" target="_blank" rel="noopener">在 Google Maps 查看地圖與最新評分 ↗</a></div><h3>用餐記錄 <small>(${reviews.length})</small></h3>${reviews.map(x=>`<article class="review"><div class="review-head"><strong>${esc(x.author)}</strong><span>★ ${x.score.toFixed(1)}</span></div><p class="hint">用餐 ${esc(x.visitedOn)} · ${local.some(l=>l.id===x.id)?'本機未公開':'店家示範 / Git 共編'} · 更新 ${esc(new Date(x.updatedAt).toLocaleDateString('zh-TW'))}</p><p>${esc(x.text)}</p></article>`).join('')||'<p class="muted">還沒有食記，寫下你的第一個感受。</p>'}`;
+ $('#detail-content').innerHTML=`<p class="eyebrow">${r.demo?'FICTIONAL DEMO':'COMMUNITY REVIEW'}</p><h2>${esc(r.name)}</h2><p class="muted">${esc(r.address)} · ${esc(r.categories.join(' / '))}</p><p class="info-copy">${esc(r.description)}</p><div class="detail-top"><button class="primary" id="review-this">寫下 / 修改我的評價</button><button id="share-this">分享餐廳 ↗</button></div><label class="share-link">餐廳專屬連結<input id="permalink" type="url" readonly value="${esc(shareUrl.href)}" aria-label="餐廳專屬連結，點選後可手動複製"></label><div class="map-box"><p class="hint">${r.demo?'此為虛構餐廳；地圖顯示區域搜尋，不代表店家位置。':'地圖由 Google Maps 提供，載入後將連線至 Google。'}</p><button id="load-map">載入 Google 地圖 ↗</button><div id="map-slot"></div><p id="google-rating" class="hint">${r.demo?'示範餐廳不提供 Google 店家評分。':'Google 評分：尚未載入。需設定 Maps API 金鑰及店家 Place ID。'}</p><a href="${esc(mapUrl)}" target="_blank" rel="noopener">在 Google Maps 查看地圖與最新評分 ↗</a></div><h3>用餐記錄 <small>(${reviews.length})</small></h3>${reviews.map(renderReview).join('')||'<p class="muted">還沒有食記，寫下你的第一個感受。</p>'}`;
  $('#review-this').onclick=()=>openEditor(id);
  $('#permalink').onclick=e=>e.target.select();
  $('#load-map').onclick=()=>{const iframe=document.createElement('iframe');iframe.title=`${r.name} Google 地圖`;iframe.loading='lazy';iframe.referrerPolicy='strict-origin-when-cross-origin';iframe.src=`https://maps.google.com/maps?q=${encodeURIComponent(r.mapQuery||r.name+' '+r.address)}&output=embed`;$('#map-slot').replaceChildren(iframe);$('#load-map').hidden=true;if(config.googleMapsApiKey&&r.placeId&&!r.demo)loadGoogleRating(r);};
